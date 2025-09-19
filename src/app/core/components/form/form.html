@@ -1,0 +1,65 @@
+<div class="container mt-4">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+
+          <h2>{{ isEdit ? 'Editar' : 'Nueva' }} Categoría</h2>
+
+          <form [formGroup]="form" (ngSubmit)="onSubmit()" class="mt-3">
+
+            <!-- Campo Nombre -->
+            <div class="mb-3">
+              <label class="form-label">Nombre de la categoría</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="name"
+                [class.is-invalid]="name?.invalid && (name?.dirty || name?.touched)"
+                placeholder="Ej: Electrónicos">
+
+              @if (name?.invalid && (name?.dirty || name?.touched)) {
+                <div class="invalid-feedback">
+                  @if (name?.errors?.['required']) {
+                    <div>El nombre es requerido</div>
+                  }
+                  @if (name?.errors?.['minlength']) {
+                    <div>Mínimo 3 caracteres</div>
+                  }
+                  @if (name?.errors?.['maxlength']) {
+                    <div>Máximo 50 caracteres</div>
+                  }
+                </div>
+              }
+            </div>
+
+            <!-- Botones -->
+            <div class="d-flex gap-2">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="form.invalid || loading">
+                @if (loading) {
+                  <span class="spinner-border spinner-border-sm me-2"></span>
+                }
+                {{ isEdit ? 'Actualizar' : 'Crear' }} Categoría
+              </button>
+
+              <button
+                type="button"
+                class="btn btn-secondary"
+                (click)="onCancel()">
+                Cancelar
+              </button>
+            </div>
+
+            <!-- Mensaje de error -->
+            @if (error) {
+              <div class="alert alert-danger mt-3">
+                {{ error }}
+              </div>
+            }
+
+          </form>
+
+        </div>
+      </div>
+    </div>

@@ -1,1 +1,18 @@
-<p>table works!</p>
+<p-table [value]="categories()" [tableStyle]="{ 'min-width': '50rem', 'padding': '1rem' }">
+  <ng-template #header>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>creationDate</th>
+    </tr>
+  </ng-template>
+  <ng-template let-category pTemplate="body">
+    <tr>
+      <td>{{ category.id }}</td>
+      <td>{{ category.name }}</td>
+      <td>{{ formatDate(category.creationDate) }}</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<app-form></app-form>

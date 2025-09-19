@@ -2,10 +2,12 @@ import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { Category } from '../../services/category';
 import { tap, catchError, of } from 'rxjs';
 import { RouterModule } from '@angular/router';
+import { TableModule } from 'primeng/table';
+import { Form } from '../form/form';
 
 @Component({
   selector: 'app-table',
-  imports: [],
+  imports: [TableModule, Form],
   templateUrl: './table.html',
   styleUrl: './table.css',
 })
